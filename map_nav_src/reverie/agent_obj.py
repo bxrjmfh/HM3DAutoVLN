@@ -24,7 +24,7 @@ from models.model import VLNBert, Critic
 from models.ops import pad_tensors_wgrad
 
 
-class GMapObjectNavAgent(Seq2SeqAgent):
+class GMapObjectNavAgent(Seq2SeqAgent): # 导航 angent 类
     
     def _build_model(self):
         self.vln_bert = VLNBert(self.args).cuda()
@@ -289,7 +289,7 @@ class GMapObjectNavAgent(Seq2SeqAgent):
                 self.scanvp_cands[scanvp][cand['viewpointId']] = cand['pointId']
 
     # @profile
-    def rollout(self, train_ml=None, train_rl=False, reset=True, og_loss_weight=1):
+    def rollout(self, train_ml=None, train_rl=False, reset=True, og_loss_weight=1): # 取出轨迹的逻辑。
         if reset:  # Reset env
             obs = self.env.reset()
         else:
@@ -324,7 +324,7 @@ class GMapObjectNavAgent(Seq2SeqAgent):
         ml_loss = 0.     
         og_loss = 0.   
 
-        for t in range(self.args.max_action_len):
+        for t in range(self.args.max_action_len): #在每个 action 中，可以计算其不确定度
             for i, gmap in enumerate(gmaps):
                 if not ended[i]:
                     gmap.node_step_ids[obs[i]['viewpoint']] = t + 1

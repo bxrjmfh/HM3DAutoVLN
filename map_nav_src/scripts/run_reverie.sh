@@ -66,6 +66,6 @@ python reverie/main_nav_obj_hm3d.py $flag --tokenizer bert \
       --eval_first 
 
 # test
-python reverie/main_nav_obj_hm3d.py $flag --tokenizer bert \
-      --resume_file ${outdir}/ckpts/best_val_unseen \
-      --test --submit 
+# python reverie/main_nav_obj_hm3d.py $flag --tokenizer bert \
+#       --resume_file ${outdir}/ckpts/best_val_unseen \
+#       --test --submit 

@@ -1,5 +1,5 @@
 import torch
-
+from utils.local_adapter import get_local_model
 
 def get_tokenizer(args):
     from transformers import AutoTokenizer
@@ -7,7 +7,8 @@ def get_tokenizer(args):
         cfg_name = 'xlm-roberta-base'
     else:
         cfg_name = 'bert-base-uncased'
-    tokenizer = AutoTokenizer.from_pretrained(cfg_name)
+    cfg_path = get_local_model(cfg_name)
+    tokenizer = AutoTokenizer.from_pretrained(cfg_path)
     return tokenizer
 
 def get_vlnbert_models(args, config=None):
@@ -31,7 +32,8 @@ def get_vlnbert_models(args, config=None):
         cfg_name = 'xlm-roberta-base'
     else:
         cfg_name = 'bert-base-uncased'
-    vis_config = PretrainedConfig.from_pretrained(cfg_name)
+    cfg_path = get_local_model(cfg_name)
+    vis_config = PretrainedConfig.from_pretrained(cfg_path)
 
     if args.tokenizer == 'xlm':
         vis_config.type_vocab_size = 2

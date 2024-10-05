@@ -8,7 +8,8 @@ import random
 import networkx as nx
 from collections import defaultdict
 import copy
-
+import sys
+sys.path.append('/home/lihao/VLN_2024/Matterport3DSimulator/build')
 import MatterSim
 
 from utils.data import load_nav_graphs, new_simulator
